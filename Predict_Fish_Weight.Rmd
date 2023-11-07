@@ -74,6 +74,20 @@ subsets(regsubsets.out,statistic="adjr2",legend="bottom",main="Adjusted R^2")
 
 ### Best Models
 
+```{r}
+which.max(summary.out$adjr2)
+```
+```{r}
+summary.out$which[2,]
+```
+```{r}
+best.model <- lm(Weight~Height+Width,data=Perch)
+summary(best.model)
+```
+```{r}
+anova(Perchfullup,best.model)
+```
+
 ### Best Two regressor model
 
 
