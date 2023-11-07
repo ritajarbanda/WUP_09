@@ -134,6 +134,39 @@ best Two Regressor Model L1-L3
 
 ## Roach
 
+```{r}
+Roachfullup <- lm(Weight~ .,data=Roach)
+summary.lm(Roachfullup)
+```
+```{r}
+library(leaps)
+regsubsets.out <-
+    regsubsets(Weight ~ .,
+               data = Roach,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+library(car)
+subsets(regsubsets.out,statistic="adjr2",legend="bottomleft",main="Adjusted R^2")
+```
+```{r}
+which.max(summary.out$adjr2)
+```
+```{r}
+summary.out$which[2,]
+```
+```{r}
+best.model <- lm(Weight~Width+Length3,data=Roach)
+summary(best.model)
+```
+```{r}
+anova(Roachfullup,best.model)
+```
+
 ### Best Models
 
 ### Best Two regressor model
