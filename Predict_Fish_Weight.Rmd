@@ -90,6 +90,7 @@ anova(Perchfullup,best.model)
 
 ### Best Two regressor model
 
+Best Double Model - Height + Width
 
 ## Pike
 
